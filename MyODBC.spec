@@ -33,10 +33,10 @@ MyODBC: sterownik ODBC dla MySQL.
 %build
 rm -f missing
 %{__libtoolize}
-aclocal
-automake -a -c -i
+%{__aclocal}
+%{__automake} -i
 %{__autoconf}
-autoheader
+%{__autoheader}
 %configure \
 	%{!?_with_iodbc:--with-unixODBC=/usr} \
 	%{?_with_iodbc:--with-iODBC=/usr --with-odbc-ini=/etc/odbc.ini} 
