@@ -35,7 +35,7 @@ rm -f missing
 libtoolize --copy --force
 aclocal
 automake -a -c -i
-autoconf
+%{__autoconf}
 autoheader
 %configure \
 	%{!?_with_iodbc:--with-unixODBC=/usr} \
