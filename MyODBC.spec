@@ -5,14 +5,14 @@
 Summary:	MyODBC: an ODBC driver for MySQL
 Summary(pl):	MyODBC: driver ODBC dla MySQL
 Name:		MyODBC
-Version:	3.51.09
+Version:	3.51.10
 Release:	1
-License:	Public Domain
+License:	GPL v2+
 Vendor:		MySQL AB
-Group:		Applications/Databases
+Group:		Libraries
 #Source0:	http://www.mysql.com/Downloads/MyODBC/%{name}-%{version}.tar.gz
 Source0:	ftp://sunsite.icm.edu.pl/pub/unix/mysql/Downloads/MyODBC3/%{name}-%{version}.tar.gz
-# Source0-md5:	2ef0652d82fc327e28db76b8554dbf31
+# Source0-md5:	34334272eb6f60dffc793c9aa3d29154
 URL:		http://www.mysql.com/
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -24,6 +24,7 @@ BuildRequires:	unixODBC-devel
 BuildRequires:	libltdl-devel
 BuildRequires:	libtool
 BuildRequires:	mysql-devel >= 4.0.10
+BuildRequires:	qt-devel
 Requires(post):	/usr/bin/odbcinst
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -32,6 +33,18 @@ MyODBC: an ODBC driver for MySQL.
 
 %description -l pl
 MyODBC: sterownik ODBC dla MySQL.
+
+%package qt
+Summary:	MyODBC - Qt-based setup library
+Summary(pl):	MyODBC - Oparta o Qt biblioteka konfiguracyjna
+Group:		Libraries
+Requires:	%{name} = %{version}-%{release}
+
+%description qt
+MyODBC - Qt-based setup library.
+
+%description qt -l pl
+MyODBC - Oparta o Qt biblioteka konfiguracyjna.
 
 %prep
 %setup -q
@@ -42,6 +55,7 @@ MyODBC: sterownik ODBC dla MySQL.
 %{__automake} -i
 %{__autoconf}
 %{__autoheader}
+LDFLAGS="%{rpmldflags} -L/usr/X11R6/%{_lib}"
 %configure \
 %if %{with iodbc}
 	--with-iODBC=/usr \
@@ -58,6 +72,8 @@ rm -rf $RPM_BUILD_ROOT
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
 
+rm -f $RPM_BUILD_ROOT%{_libdir}/lib*.la
+
 %clean
 rm -rf $RPM_BUILD_ROOT
 
@@ -73,7 +89,18 @@ EOF
 
 %postun -p /sbin/ldconfig
 
+%post	qt -p /sbin/ldconfig
+%postun	qt -p /sbin/ldconfig
+
 %files
 %defattr(644,root,root,755)
-%doc INSTALL ChangeLog
-%attr(755,root,root) %{_libdir}/libmyodbc*
+%doc ChangeLog INSTALL README
+%attr(755,root,root) %{_libdir}/libmyodbc3-*.so
+%attr(755,root,root) %{_libdir}/libmyodbc3.so
+%attr(755,root,root) %{_libdir}/libmyodbc3_r-*.so
+%attr(755,root,root) %{_libdir}/libmyodbc3_r.so
+
+%files qt
+%defattr(644,root,root,755)
+%attr(755,root,root) %{_libdir}/libmyodbc3S-*.so
+%attr(755,root,root) %{_libdir}/libmyodbc3S.so
