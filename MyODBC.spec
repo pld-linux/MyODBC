@@ -5,14 +5,14 @@
 Summary:	MyODBC: an ODBC driver for MySQL
 Summary(pl):	MyODBC: driver ODBC dla MySQL
 Name:		MyODBC
-Version:	3.51.10
-Release:	2
-License:	GPL v2+
+Version:	3.51.11
+Release:	1
+License:	GPL v2+ + MySQL FLOSS Exception
 Vendor:		MySQL AB
 Group:		Libraries
 #Source0:	http://www.mysql.com/Downloads/MyODBC/%{name}-%{version}.tar.gz
 Source0:	ftp://sunsite.icm.edu.pl/pub/unix/mysql/Downloads/MyODBC3/%{name}-%{version}.tar.gz
-# Source0-md5:	34334272eb6f60dffc793c9aa3d29154
+# Source0-md5:	fb295a2a07dab09caf608f2227b531ef
 URL:		http://www.mysql.com/
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -94,7 +94,7 @@ EOF
 
 %files
 %defattr(644,root,root,755)
-%doc ChangeLog INSTALL README
+%doc ChangeLog EXCEPTIONS README
 %attr(755,root,root) %{_libdir}/libmyodbc3-*.so
 %attr(755,root,root) %{_libdir}/libmyodbc3.so
 %attr(755,root,root) %{_libdir}/libmyodbc3_r-*.so
