@@ -1,3 +1,4 @@
+# --with iodbs  build with libiodbc not with unixODBC
 Summary:	MyODBC: an ODBC driver for MySQL
 Summary(pl):	MyODBC: driver ODBC dla MySQL
 Name:		MyODBC
@@ -11,7 +12,11 @@ Group(pl):	Aplikacje/Bazy danych
 #Source0:	http://www.mysql.com/Downloads/MyODBC/%{name}-%{version}.tar.gz
 Source0:	ftp://sunsite.icm.edu.pl/pub/unix/mysql/Downloads/MyODBC/%{name}-%{version}.tar.gz
 URL:		http://www.mysql.com/
+%if %{?_with_iodbc:0}%{!?_with_iodbc:1}
 BuildRequires:	unixODBC-devel
+%else
+BuildRequires:	libiodbc-devel
+%endif
 BuildRequires:	mysql-devel >= 3.23.38-2
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -35,7 +40,8 @@ automake -a -c -i
 autoconf
 autoheader
 %configure \
-	--with-unixODBC=/usr
+	%{!?_with_iodbc:--with-unixODBC=/usr} \
+	%{?_with_iodbc:--with-iODBC=/usr --with-odbc-ini=/etc/odbc.ini} 
 %{__make}
 
 %install
