@@ -41,7 +41,7 @@ rm -f missing
 %{__autoheader}
 %configure \
 	%{!?_with_iodbc:--with-unixODBC=/usr} \
-	%{?_with_iodbc:--with-iODBC=/usr --with-odbc-ini=/etc/odbc.ini} 
+	%{?_with_iodbc:--with-iODBC=/usr --with-odbc-ini=/etc/odbc.ini}
 %{__make}
 
 %install
@@ -50,10 +50,10 @@ rm -rf $RPM_BUILD_ROOT
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
 
-%clean 
+%clean
 rm -rf $RPM_BUILD_ROOT
 
-%files 
+%files
 %defattr(644,root,root,755)
 %doc INSTALL ChangeLog
 %attr(755,root,root) %{_libdir}/libmyodbc*
