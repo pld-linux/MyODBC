@@ -2,14 +2,14 @@
 Summary:	MyODBC: an ODBC driver for MySQL
 Summary(pl):	MyODBC: driver ODBC dla MySQL
 Name:		MyODBC
-Version:	3.51.05
-Release:	2
+Version:	3.51.06
+Release:	1
 License:	Public Domain
 Vendor:		MySQL AB
 Group:		Applications/Databases
 #Source0:	http://www.mysql.com/Downloads/MyODBC/%{name}-%{version}.tar.gz
 Source0:	ftp://sunsite.icm.edu.pl/pub/unix/mysql/Downloads/MyODBC3/%{name}-%{version}.tar.gz
-# Source0-md5:	78cdf7175de224fb445daf2634683e98
+# Source0-md5:	5a59b4f01592fc9ec96e985bc7d6aada
 URL:		http://www.mysql.com/
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -18,6 +18,7 @@ BuildRequires:	unixODBC-devel
 %else
 BuildRequires:	libiodbc-devel
 %endif
+BuildRequires:	libltdl-devel
 BuildRequires:	libtool
 BuildRequires:	mysql-devel >= 4.0.10
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
