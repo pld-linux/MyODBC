@@ -7,11 +7,14 @@ Group(pl):	Aplikacje/Bazy danych
 Version:	2.50.37
 Release:	1
 License:	Public Domain
-Source0:	%{name}-%{version}.tar.gz
+Source0:	http://www.mysql.com/Downloads/MyODBC/%{name}-%{version}.tar.gz
 URL:		http://www.mysql.com/
 Vendor:		MySQL AB
 BuildRequires:	unixODBC-devel
 BuildRequires:	mysql-devel >= 3.23.38-2
+BuildRequires:	autoconf
+BuildRequires:	automake
+BuildRequires:	libtool
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
