@@ -46,12 +46,10 @@ rm -f missing
 rm -rf $RPM_BUILD_ROOT
 %{__make} DESTDIR=$RPM_BUILD_ROOT install
 
-gzip -9fn INSTALL ChangeLog
-
 %clean 
 rm -rf $RPM_BUILD_ROOT
 
 %files 
 %defattr(644,root,root,755)
-%doc {INSTALL,ChangeLog}.gz
+%doc INSTALL ChangeLog
 %attr(755,root,root) %{_libdir}/libmyodbc*
