@@ -7,8 +7,6 @@ Release:	1
 License:	Public Domain
 Vendor:		MySQL AB
 Group:		Applications/Databases
-Group(de):	Applikationen/Dateibanken
-Group(pl):	Aplikacje/Bazy danych
 #Source0:	http://www.mysql.com/Downloads/MyODBC/%{name}-%{version}.tar.gz
 Source0:	ftp://sunsite.icm.edu.pl/pub/unix/mysql/Downloads/MyODBC/%{name}-%{version}.tar.gz
 URL:		http://www.mysql.com/
