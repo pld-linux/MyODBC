@@ -57,6 +57,7 @@ MyODBC - Oparta o Qt biblioteka konfiguracyjna.
 %{__autoheader}
 LDFLAGS="%{rpmldflags} -L/usr/X11R6/%{_lib}"
 %configure \
+	--with-qt-libraries=%{_libdir} \
 %if %{with iodbc}
 	--with-iODBC=/usr \
 	--with-odbc-ini=/etc/odbc.ini
