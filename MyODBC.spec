@@ -1,5 +1,7 @@
-%bcond_with	iodbs # build with libiodbc not with unixODBC
-
+#
+# Conditional build:
+%bcond_with	iodbc	# build with libiodbc instead of unixODBC
+#
 Summary:	MyODBC: an ODBC driver for MySQL
 Summary(pl):	MyODBC: driver ODBC dla MySQL
 Name:		MyODBC
@@ -15,7 +17,7 @@ Source0:	ftp://sunsite.icm.edu.pl/pub/unix/mysql/Downloads/MyODBC3/%{name}-%{ver
 URL:		http://www.mysql.com/
 BuildRequires:	autoconf
 BuildRequires:	automake
-%if %{with iodbs}
+%if %{with iodbc}
 BuildRequires:	libiodbc-devel
 %else
 BuildRequires:	unixODBC-devel
@@ -36,7 +38,7 @@ MyODBC: sterownik ODBC dla MySQL.
 %setup -q -n myodbc-%{sver}
 
 %build
-rm -rf missing autom*
+rm -rf autom4te.cache
 %{__libtoolize}
 %{__aclocal}
 %{__automake} -i
