@@ -25,7 +25,7 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 MyODBC: an ODBC driver for MySQL.
 
 %description -l pl
-MyODBC: driver ODBC dla MySQL.
+MyODBC: sterownik ODBC dla MySQL.
 
 %prep
 %setup -q
