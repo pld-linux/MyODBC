@@ -32,7 +32,7 @@ MyODBC: sterownik ODBC dla MySQL.
 
 %build
 rm -f missing
-libtoolize --copy --force
+%{__libtoolize}
 aclocal
 automake -a -c -i
 %{__autoconf}
