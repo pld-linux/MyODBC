@@ -11,15 +11,15 @@ Group:		Applications/Databases
 Source0:	ftp://sunsite.icm.edu.pl/pub/unix/mysql/Downloads/MyODBC3/%{name}-%{version}.tar.gz
 # Source0-md5:	78cdf7175de224fb445daf2634683e98
 URL:		http://www.mysql.com/
+BuildRequires:	autoconf
+BuildRequires:	automake
 %if %{?_with_iodbc:0}%{!?_with_iodbc:1}
 BuildRequires:	unixODBC-devel
 %else
 BuildRequires:	libiodbc-devel
 %endif
-BuildRequires:	mysql-devel >= 4.0.10
-BuildRequires:	autoconf
-BuildRequires:	automake
 BuildRequires:	libtool
+BuildRequires:	mysql-devel >= 4.0.10
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -45,7 +45,9 @@ rm -f missing
 
 %install
 rm -rf $RPM_BUILD_ROOT
-%{__make} DESTDIR=$RPM_BUILD_ROOT install
+
+%{__make} install \
+	DESTDIR=$RPM_BUILD_ROOT
 
 %clean 
 rm -rf $RPM_BUILD_ROOT
