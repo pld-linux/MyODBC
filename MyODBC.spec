@@ -1,46 +1,45 @@
-%define myodbc_version		2.50.37
-%define release			1
-
 Name:		MyODBC
 Summary:	MyODBC: an ODBC driver for MySQL
 Group:		Applications/Databases
-Version:	%{myodbc_version}
-Release:	%{release}
+Group(de):	Applikationen/Dateibanken
+Group(pl):	Aplikacje/Bazy danych
+Version:	2.50.37
+Release:	1
 Copyright:	Public Domain
-Source0:	MyODBC-%{myodbc_version}.tar.gz
+Source0:	%{name}-%{version}.tar.gz
 URL:		http://www.mysql.com/
 Vendor:		MySQL AB
-Packager:	Matt Wagner <matt@mysql.com>
+BuildRequires:	unixODBC-devel
+BuildRequires:	mysql-devel >= 3.23.38-2
+BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
-# Think about what you use here since the first step is to
-# run a rm -rf
-BuildRoot:	/var/tmp/myodbc
-
-# From the manual
 %description
 MyODBC: an ODBC driver for MySQL
 
 %prep
-%setup -n MyODBC-%{myodbc_version}
+%setup -q
 
 %build
-./configure \
-	--prefix=${RPM_BUILD_ROOT}/usr/local \
-	--with-iodbc=/usr/local
-make
+rm -f missing
+libtoolize --copy --force
+aclocal
+automake -a -c -i
+autoconf
+autoheader
+%configure \
+	--with-unixODBC=/usr
+%{__make}
 
 %clean 
 rm -rf $RPM_BUILD_ROOT
 
 %install
-make PREFIX=$RPM_BUILD_ROOT install
+rm -rf $RPM_BUILD_ROOT
+%{__make} DESTDIR=$RPM_BUILD_ROOT install
 
-find ${RPM_BUILD_ROOT}/usr/local -type f -print | sed "s@^${RPM_BUILD_ROOT}@@g" > myodbc-filelist
-find ${RPM_BUILD_ROOT}/usr/local -type l -print | sed "s@^${RPM_BUILD_ROOT}@@g" >> myodbc-filelist
+gzip -9fn INSTALL ChangeLog
 
-%files -f myodbc-filelist
-%defattr(-,root,root)
-
-%doc INSTALL
-%doc ChangeLog
-%doc odbc.ini
+%files 
+%defattr(644,root,root,755)
+%doc {INSTALL,ChangeLog}.gz
+%attr(755,root,root) %{_libdir}/libmyodbc*
