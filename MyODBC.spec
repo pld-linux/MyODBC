@@ -1,15 +1,15 @@
-Name:		MyODBC
 Summary:	MyODBC: an ODBC driver for MySQL
 Summary(pl):	MyODBC: driver ODBC dla MySQL
+Name:		MyODBC
+Version:	2.50.39
+Release:	1
+License:	Public Domain
+Vendor:		MySQL AB
 Group:		Applications/Databases
 Group(de):	Applikationen/Dateibanken
 Group(pl):	Aplikacje/Bazy danych
-Version:	2.50.37
-Release:	1
-License:	Public Domain
 Source0:	http://www.mysql.com/Downloads/MyODBC/%{name}-%{version}.tar.gz
 URL:		http://www.mysql.com/
-Vendor:		MySQL AB
 BuildRequires:	unixODBC-devel
 BuildRequires:	mysql-devel >= 3.23.38-2
 BuildRequires:	autoconf
