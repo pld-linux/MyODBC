@@ -9,6 +9,7 @@ Vendor:		MySQL AB
 Group:		Applications/Databases
 #Source0:	http://www.mysql.com/Downloads/MyODBC/%{name}-%{version}.tar.gz
 Source0:	ftp://sunsite.icm.edu.pl/pub/unix/mysql/Downloads/MyODBC3/%{name}-%{version}.tar.gz
+# Source0-md5:	78cdf7175de224fb445daf2634683e98
 URL:		http://www.mysql.com/
 %if %{?_with_iodbc:0}%{!?_with_iodbc:1}
 BuildRequires:	unixODBC-devel
