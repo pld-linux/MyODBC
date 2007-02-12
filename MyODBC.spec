@@ -3,7 +3,7 @@
 %bcond_with	iodbc	# build with libiodbc instead of unixODBC
 #
 Summary:	MyODBC: an ODBC driver for MySQL
-Summary(pl.UTF-8):   MyODBC: driver ODBC dla MySQL
+Summary(pl.UTF-8):	MyODBC: driver ODBC dla MySQL
 Name:		MyODBC
 Version:	3.51.11
 Release:	3
@@ -36,7 +36,7 @@ MyODBC: sterownik ODBC dla MySQL.
 
 %package qt
 Summary:	MyODBC - Qt-based setup library
-Summary(pl.UTF-8):   MyODBC - Oparta o Qt biblioteka konfiguracyjna
+Summary(pl.UTF-8):	MyODBC - Oparta o Qt biblioteka konfiguracyjna
 Group:		Libraries
 Requires:	%{name} = %{version}-%{release}
 
