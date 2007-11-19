@@ -6,7 +6,7 @@ Summary:	MyODBC: an ODBC driver for MySQL
 Summary(pl.UTF-8):	MyODBC: driver ODBC dla MySQL
 Name:		MyODBC
 Version:	3.51.11
-Release:	3
+Release:	4
 License:	GPL v2+ + MySQL FLOSS Exception
 Vendor:		MySQL AB
 Group:		Libraries
