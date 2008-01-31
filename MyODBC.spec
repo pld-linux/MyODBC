@@ -5,14 +5,14 @@
 Summary:	MyODBC: an ODBC driver for MySQL
 Summary(pl.UTF-8):	MyODBC: driver ODBC dla MySQL
 Name:		MyODBC
-Version:	3.51.11
-Release:	4
+Version:	3.51.23
+Release:	1
 License:	GPL v2+ + MySQL FLOSS Exception
 Vendor:		MySQL AB
 Group:		Libraries
 #Source0:	http://www.mysql.com/Downloads/MyODBC/%{name}-%{version}.tar.gz
-Source0:	ftp://sunsite.icm.edu.pl/pub/unix/mysql/Downloads/MyODBC3/%{name}-%{version}.tar.gz
-# Source0-md5:	fb295a2a07dab09caf608f2227b531ef
+Source0:	http://sunsite.icm.edu.pl/mysql/Downloads/Connector-ODBC/3.51/mysql-connector-odbc-%{version}r998.tar.gz
+# Source0-md5:	74b02e2771529db36f98120f4308f9c9
 URL:		http://www.mysql.com/
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -47,7 +47,7 @@ MyODBC - Qt-based setup library.
 MyODBC - Oparta o Qt biblioteka konfiguracyjna.
 
 %prep
-%setup -q
+%setup -q -n mysql-connector-odbc-%{version}r998
 
 %build
 %{__libtoolize}
@@ -58,6 +58,8 @@ MyODBC - Oparta o Qt biblioteka konfiguracyjna.
 LDFLAGS="%{rpmldflags} -L/usr/X11R6/%{_lib}"
 %configure \
 	--with-qt-libraries=%{_libdir} \
+	--with-qt-dir=/usr \
+	--with-qt-includes=/usr/include/qt \
 %if %{with iodbc}
 	--with-iODBC=/usr \
 	--with-odbc-ini=/etc/odbc.ini
@@ -95,7 +97,8 @@ EOF
 
 %files
 %defattr(644,root,root,755)
-%doc ChangeLog EXCEPTIONS README
+%doc ChangeLog LICENSE.gpl LICENSE.exceptions README
+%attr(755,root,root) %{_bindir}/myodbc3*
 %attr(755,root,root) %{_libdir}/libmyodbc3-*.so
 %attr(755,root,root) %{_libdir}/libmyodbc3.so
 %attr(755,root,root) %{_libdir}/libmyodbc3_r-*.so
