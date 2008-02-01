@@ -76,6 +76,7 @@ rm -rf $RPM_BUILD_ROOT
 	DESTDIR=$RPM_BUILD_ROOT
 
 rm -f $RPM_BUILD_ROOT%{_libdir}/lib*.la
+rm -rf $RPM_BUILD_ROOT%{_datadir}/mysql-connector-odbc
 
 %clean
 rm -rf $RPM_BUILD_ROOT
