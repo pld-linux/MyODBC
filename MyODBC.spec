@@ -98,7 +98,7 @@ EOF
 
 %files
 %defattr(644,root,root,755)
-%doc ChangeLog LICENSE.gpl LICENSE.exceptions README
+%doc ChangeLog LICENSE.exceptions README
 %attr(755,root,root) %{_bindir}/myodbc3*
 %attr(755,root,root) %{_libdir}/libmyodbc3-*.so
 %attr(755,root,root) %{_libdir}/libmyodbc3.so
