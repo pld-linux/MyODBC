@@ -55,7 +55,6 @@ MyODBC - Oparta o Qt biblioteka konfiguracyjna.
 %{__automake} -i
 %{__autoconf}
 %{__autoheader}
-LDFLAGS="%{rpmldflags} -L/usr/X11R6/%{_lib}"
 %configure \
 	--with-qt-libraries=%{_libdir} \
 	--with-qt-dir=/usr \
